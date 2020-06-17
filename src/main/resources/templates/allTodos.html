@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" th:href="@{webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+
+  <title>ToDo Demo App</title>
+</head>
+<body>
+<div th:replace="fragments/navbar" :: navbar></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+
+      <form th:method="post" th:action="@{/todo}" th:object="${todo}">
+        <label for="todo">New Todo: </label>
+        <input type="text" name="todo" th:field="*{todoText}" />
+
+        <button type="submit">Create</button>
+      </form>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Todo</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Done?</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:if="${allTodos.empty}">
+            <td colspan="3" class="text-center">No Todos Yet</td>
+          </tr>
+          <tr th:each="todo : ${allTodos}">
+            <td><span th:text="${todo.id}">#</span></td>
+            <td><span th:text="${todo.todoText}">Todo</span></td>
+            <td><span th:text="${#temporals.format(localDateTime, 'dd-MM-yyy')}">Created At</span></td>
+            <th scope="row">
+              <input type="checkbox" name="isDone" th:field="*{todo.done}"/>
+            </th>
+            <td>
+              <span>
+                <a th:href="@{/todo/edit/{id}(id=${todo.id})}">Edit</a>
+              </span>
+              |
+              <span>
+                <a th:href="@{/todo/delete/{id}(id=${todo.id})}">Delete</a>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script th:src="@{webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{webjars/popper.js/1.16.1/dist/popper.min.js}"></script>
+<script th:src="@{webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
+</body>
+</html>
