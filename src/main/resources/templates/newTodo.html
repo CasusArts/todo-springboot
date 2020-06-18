@@ -20,7 +20,7 @@
 
       <form th:method="post" th:action="@{/todo}" th:object="${todo}">
         <label for="todo">New Todo: </label>
-        <input type="text" name="todo" th:field="*{todoText}" />
+        <input type="text" name="todo" th:field="*{todoText}"/>
 
         <button type="submit">Create</button>
       </form>

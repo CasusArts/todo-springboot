@@ -19,7 +19,7 @@
 
       <form th:method="post" th:action="@{/todo}" th:object="${todo}">
         <label for="todo">New Todo: </label>
-        <input type="text" name="todo" th:field="*{todoText}" />
+        <input type="text" name="todo" th:field="*{todoText}"/>
 
         <button type="submit">Create</button>
       </form>
@@ -31,35 +31,35 @@
     <div class="col-md-8">
       <table class="table">
         <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Todo</th>
-            <th scope="col">Created At</th>
-            <th scope="col">Done?</th>
-            <th scope="col">Actions</th>
-          </tr>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Todo</th>
+          <th scope="col">Created At</th>
+          <th scope="col">Done?</th>
+          <th scope="col">Actions</th>
+        </tr>
         </thead>
         <tbody>
-          <tr th:if="${allTodos.empty}">
-            <td colspan="3" class="text-center">No Todos Yet</td>
-          </tr>
-          <tr th:each="todo : ${allTodos}">
-            <td><span th:text="${todo.id}">#</span></td>
-            <td><span th:text="${todo.todoText}">Todo</span></td>
-            <td><span th:text="${#temporals.format(localDateTime, 'dd-MM-yyy')}">Created At</span></td>
-            <th scope="row">
-              <input type="checkbox" name="isDone" th:field="*{todo.done}"/>
-            </th>
-            <td>
+        <tr th:if="${allTodos.empty}">
+          <td colspan="3" class="text-center">No Todos Yet</td>
+        </tr>
+        <tr th:each="todo : ${allTodos}">
+          <td><span th:text="${todo.id}">#</span></td>
+          <td><span th:text="${todo.todoText}">Todo</span></td>
+          <td><span th:text="${#temporals.format(localDateTime, 'dd-MM-yyy')}">Created At</span></td>
+          <th scope="row">
+            <input type="checkbox" name="isDone" th:field="*{todo.done}"/>
+          </th>
+          <td>
               <span>
                 <a th:href="@{/todo/edit/{id}(id=${todo.id})}">Edit</a>
               </span>
-              |
-              <span>
+            |
+            <span>
                 <a th:href="@{/todo/delete/{id}(id=${todo.id})}">Delete</a>
               </span>
-            </td>
-          </tr>
+          </td>
+        </tr>
         </tbody>
       </table>
     </div>

@@ -4,7 +4,6 @@ package io.casusarts.todo.entity;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +16,6 @@ import java.util.Date;
 @Data
 @Entity
 @NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
-//@RequiredArgsConstructor
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -3,10 +3,8 @@ package io.casusarts.todo.web;
 
 import io.casusarts.todo.data.TodoRepository;
 import io.casusarts.todo.entity.Todo;
-import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
@@ -74,7 +72,6 @@ public class TodoController {
             return "redirect:/todo";
         }
 
-//        todo.setTodoText(todo.getTodoText());
         todoRepository.save(todo);
         model.addAttribute("todo", todoRepository.findAll());
         return "redirect:/todo";
